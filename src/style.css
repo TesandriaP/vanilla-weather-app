@@ -30,6 +30,7 @@ li{
     line-height: 16px;
     color: #70757a;
     font-weight: normal;
+    text-transform: capitalize;
 }
 
 .weather-app-wrapper{
