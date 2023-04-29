@@ -19,15 +19,24 @@ function displayTemp(response){
    let descriptionElement = document.querySelector("#description"); 
    let humidityElement = document.querySelector("#humidity");
    let speedElement = document.querySelector("#speed");
+   let iconElement = document.querySelector("#icon");
    temperatureElement.innerHTML = Math.round(response.data.temperature.current);
     cityElement.innerHTML = response.data.city;
     descriptionElement.innerHTML = response.data.condition.description;
     humidityElement.innerHTML = response.data.temperature.humidity;
     speedElement.innerHTML = Math.round(response.data.wind.speed);
+    iconElement.setAttribute(
+        "src",
+    'http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png'
+    );
+    iconElement.setAttribute(
+        "alt", response.data.condition.description
+        );
 }
 
 let apiKey = "dtf7778e477bab3d041d72fc577o701e";
+let city = "Vicenza";
 let apiUrl =
-  "https://api.shecodes.io/weather/v1/current?query=Vicenza&key=dtf7778e477bab3d041d72fc577o701e&units=metric";
+  "https://api.shecodes.io/weather/v1/current?query=${city}&key=dtf7778e477bab3d041d72fc577o701e&units=metric";
 
   axios.get(apiUrl).then(displayTemp);
