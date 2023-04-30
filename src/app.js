@@ -34,15 +34,21 @@ function displayTemp(response){
         );
 }
 
-let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
+function search(city){
+  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
 let city = "Vicenza";
 let apiUrl =
 'https://api.shecodes.io/weather/v1/current?query=${city}&key=bd79ao40tde3dec118ca46bc3e6dd55f&units=metric';
 
+  axios.get(apiUrl).then(displayTemp); 
+}
+
+function handleSearch(event){
+    event.preventDefault();
+    let cityInputElement = document.querySelector("city-input");
+    search(cityInputElement.value);
+}
 
 
-
-
-
-
-  axios.get(apiUrl).then(displayTemp);
+  let form = document.querySelector("#search-form");
+  form.addEventListener("submit", handleSearch);
