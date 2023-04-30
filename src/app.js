@@ -34,9 +34,15 @@ function displayTemp(response){
         );
 }
 
-let apiKey = "dtf7778e477bab3d041d72fc577o701e";
+let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
 let city = "Vicenza";
 let apiUrl =
-  "https://api.shecodes.io/weather/v1/current?query=${city}&key=dtf7778e477bab3d041d72fc577o701e&units=metric";
+'https://api.shecodes.io/weather/v1/current?query=${city}&key=bd79ao40tde3dec118ca46bc3e6dd55f&units=metric';
+
+
+
+
+
+
 
   axios.get(apiUrl).then(displayTemp);
