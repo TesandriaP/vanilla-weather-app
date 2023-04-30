@@ -43,6 +43,8 @@ let apiUrl =
   axios.get(apiUrl).then(displayTemp); 
 }
 
+search(Vicenza);
+
 function handleSearch(event){
     event.preventDefault();
     let cityInputElement = document.querySelector("city-input");
