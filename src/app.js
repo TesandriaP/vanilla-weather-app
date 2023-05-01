@@ -20,15 +20,15 @@ function displayTemp(response){
    let humidityElement = document.querySelector("#humidity");
    let speedElement = document.querySelector("#speed");
    let iconElement = document.querySelector("#icon");
+
+   celsiusTemp = response.data.temperature.current;
    temperatureElement.innerHTML = Math.round(response.data.temperature.current);
     cityElement.innerHTML = response.data.city;
     descriptionElement.innerHTML = response.data.condition.description;
     humidityElement.innerHTML = response.data.temperature.humidity;
     speedElement.innerHTML = Math.round(response.data.wind.speed);
     iconElement.setAttribute(
-        "src",
-    'http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-night.png'
-    );
+        "src", response.data.condition.icon_url);
     iconElement.setAttribute(
         "alt", response.data.condition.description
         );
@@ -37,7 +37,7 @@ function displayTemp(response){
 function search(city){
   let apiKey = "dtf7778e477bab3d041d72fc577o701e";
 let apiUrl =
-`https://api.shecodes.io/weather/v1/current?query=Vicenza&key=dtf7778e477bab3d041d72fc577o701e&units=metric`;
+`https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayTemp); 
 }
@@ -48,17 +48,32 @@ function handleSearch(event){
     search(cityInputElement.value);
 }
 
-search(Vicenza);
-
 function displayFahrenheitTemp(event){
   event.preventDefault();
-  let fahrenheitTemp = (13 * 9)/ 5 * 32;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+   let fahrenheitTemp = (celsiusTemp * 9)/ 5 + 32;
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp); 
 }
+
+function displayCelsiusTemp(event){
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemp);
+}
+
+let celsiusTemp = null;
+
+  let fahrenheitLink = document.querySelector("#fahrenheit-link");
+  fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+  let celsiusLink = document.querySelector("#celsius-link");
+  celsiusLink.addEventListener("click", displayCelsiusTemp);
 
   let form = document.querySelector("#search-form");
   form.addEventListener("submit", handleSearch);
 
-  let fahrenheitLink = document.querySelector("#fahrenheit-link");
-  fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+search("Vicenza");
