@@ -37,7 +37,7 @@ function displayTemp(response){
 function search(city){
   let apiKey = "dtf7778e477bab3d041d72fc577o701e";
 let apiUrl =
-`https://api.shecodes.io/weather/v1/current?query=${city}&key=dtf7778e477bab3d041d72fc577o701e&units=metric`;
+`https://api.shecodes.io/weather/v1/current?query=Vicenza&key=dtf7778e477bab3d041d72fc577o701e&units=metric`;
 
   axios.get(apiUrl).then(displayTemp); 
 }
