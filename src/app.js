@@ -35,15 +35,12 @@ function displayTemp(response){
 }
 
 function search(city){
-  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
-let city = "Vicenza";
+  let apiKey = "dtf7778e477bab3d041d72fc577o701e";
 let apiUrl =
-'https://api.shecodes.io/weather/v1/current?query=${city}&key=bd79ao40tde3dec118ca46bc3e6dd55f&units=metric';
+`https://api.shecodes.io/weather/v1/current?query=${city}&key=dtf7778e477bab3d041d72fc577o701e&units=metric`;
 
   axios.get(apiUrl).then(displayTemp); 
 }
-
-search(Vicenza);
 
 function handleSearch(event){
     event.preventDefault();
@@ -51,6 +48,17 @@ function handleSearch(event){
     search(cityInputElement.value);
 }
 
+search(Vicenza);
+
+function displayFahrenheitTemp(event){
+  event.preventDefault();
+  let fahrenheitTemp = (13 * 9)/ 5 * 32;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemp);
+}
 
   let form = document.querySelector("#search-form");
   form.addEventListener("submit", handleSearch);
+
+  let fahrenheitLink = document.querySelector("#fahrenheit-link");
+  fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
