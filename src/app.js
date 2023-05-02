@@ -44,7 +44,7 @@ let apiUrl =
 
 function handleSearch(event){
     event.preventDefault();
-    let cityInputElement = document.querySelector("city-input");
+    let cityInputElement = document.querySelector("#city-input");
     search(cityInputElement.value);
 }
 
