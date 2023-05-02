@@ -30,6 +30,7 @@ function displayTemp(response){
    let humidityElement = document.querySelector("#humidity");
    let speedElement = document.querySelector("#speed");
    let iconElement = document.querySelector("#icon");
+   let dateElement.innerHTML = formatDate(response.data.dt * 1000);
 
    celsiusTemp = response.data.temperature.current;
    temperatureElement.innerHTML = Math.round(response.data.temperature.current);
