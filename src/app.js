@@ -30,13 +30,16 @@ function displayTemp(response){
    let humidityElement = document.querySelector("#humidity");
    let speedElement = document.querySelector("#speed");
    let iconElement = document.querySelector("#icon");
-   let dateElement.innerHTML = formatDate(response.data.dt * 1000);
+   let dateElement = document.querySelector("#date");
+   let feelsLikeElement = document.querySelector("#feels-like");
 
    celsiusTemp = response.data.temperature.current;
    temperatureElement.innerHTML = Math.round(response.data.temperature.current);
     cityElement.innerHTML = response.data.city;
     descriptionElement.innerHTML = response.data.condition.description;
     humidityElement.innerHTML = response.data.temperature.humidity;
+    dateElement.innerHTML = formatDate(response.data.time * 1000);
+    feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
     speedElement.innerHTML = Math.round(response.data.wind.speed);
     iconElement.setAttribute(
         "src", response.data.condition.icon_url);
