@@ -70,3 +70,18 @@ li::first-letter{
     cursor: default;
        text-decoration: none;
 }
+
+.weather-forecast{
+    margin-top: 19px;
+    text-align: center;
+}
+
+.weather-forecast-date{
+     font-size: 13px;
+     opacity: 0.6;
+     color: #db7878;
+}
+
+.weather-forecast-temperature-min{
+opacity: 0.6;
+}
