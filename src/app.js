@@ -79,7 +79,7 @@ function getForecast(coordinates){
   console.log(coordinates);
   
   let apiKey = "dtf7778e477bab3d041d72fc577o701e";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=imperial`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
@@ -114,7 +114,7 @@ function displayTemp(response){
 function search(city){
   let apiKey = "dtf7778e477bab3d041d72fc577o701e";
 let apiUrl =
-`https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+`https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
 
   axios.get(apiUrl).then(displayTemp); 
 }
@@ -124,31 +124,6 @@ function handleSearch(event){
     let cityInputElement = document.querySelector("#city-input");
     search(cityInputElement.value);
 }
-
-function displayFahrenheitTemp(event){
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-   let fahrenheitTemp = (celsiusTemp * 9)/ 5 + 32;
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemp); 
-}
-
-function displayCelsiusTemp(event){
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemp);
-}
-
-  let fahrenheitLink = document.querySelector("#fahrenheit-link");
-  fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
-
-  let celsiusLink = document.querySelector("#celsius-link");
-  celsiusLink.addEventListener("click", displayCelsiusTemp);
- 
-  let celsiusTemp = null;
 
   let form = document.querySelector("#search-form");
   form.addEventListener("submit", handleSearch);
