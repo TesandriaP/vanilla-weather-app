@@ -23,8 +23,10 @@ function formatDate(timestamp){
     return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast(){
-  let forecastElement = document.querySelector("#forecast");
+function displayForecast(response){
+console.log(response.data.daily);
+let forecastElement = document.querySelector("#forecast");
+
 let forecastHTML = `<div class="row">`;
 let days = ["Thurs", "Fri", "Sat", "Sun", "Mon"];
 
@@ -51,6 +53,15 @@ forecastHTML = forecastHTML + `</div>`;
 forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates){
+  console.log(coordinates);
+  
+  let apiKey = "dtf7778e477bab3d041d72fc577o701e";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayTemp(response){
     let temperatureElement = document.querySelector("#temperature");
     let cityElement = document.querySelector("#city");
@@ -74,6 +85,8 @@ function displayTemp(response){
     iconElement.setAttribute(
         "alt", response.data.condition.description
         );
+
+        getForecast(response.data.coordinates);
 }
 
 function search(city){
@@ -119,4 +132,3 @@ function displayCelsiusTemp(event){
   form.addEventListener("submit", handleSearch);
 
 search("Vicenza");
-displayForecast();
