@@ -23,6 +23,34 @@ function formatDate(timestamp){
     return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast(){
+  let forecastElement = document.querySelector("#forecast");
+let forecastHTML = `<div class="row">`;
+let days = ["Thurs", "Fri", "Sat", "Sun", "Mon"];
+
+days.forEach(function (day){
+ forecastHTML = forecastHTML + `
+  <div class="col-2">
+    <div class="weather-forecast-date">${day}
+      </div>
+    <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-night.png" alt="" width="49"
+    />
+    <div class="weather-forecast-temperatures">
+      <span class="weather-forecast-temperature-max">
+        72°
+      </span>
+      <span class="weather-forecast-temperature-min">
+        53°
+      </span>     
+     </div>
+  </div>
+`;
+});
+ 
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+}
+
 function displayTemp(response){
     let temperatureElement = document.querySelector("#temperature");
     let cityElement = document.querySelector("#city");
@@ -91,3 +119,4 @@ function displayCelsiusTemp(event){
   form.addEventListener("submit", handleSearch);
 
 search("Vicenza");
+displayForecast();
